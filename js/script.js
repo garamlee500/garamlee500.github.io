@@ -378,7 +378,7 @@ $(document).ready(function(){
         $('#game_window').empty()
 
         // start game on easy
-        current_game = new game(4)
+        current_game = new game(2.5)
         current_game.start_game()
     })
 
@@ -387,7 +387,7 @@ $(document).ready(function(){
         $('#game_window').empty()
 
         // start game on medium
-        current_game = new game(5.5)
+        current_game = new game(5)
         current_game.start_game()
     })
 
