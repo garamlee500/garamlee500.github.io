@@ -1,0 +1,125 @@
+body {
+    margin:0;
+    padding:0;
+    height: 100vh;
+    z-index: -1;
+    
+    /* Prevent scroll bars from appearing*/
+    overflow: hidden;
+}
+
+#game_window {
+    margin:0;
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    padding:0;
+
+    /* put canvas at the bottom*/
+    z-index: -1;
+
+    /* Prevent scroll bars from appearing*/
+    overflow: hidden;
+}
+
+
+#left_paddle {
+    background-color: white;
+    position: absolute;
+    left: 5rem;
+    top: 50%;
+    height: 6rem;
+    width: 1rem;
+}
+
+
+
+#right_paddle {
+    background-color: white;
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    height: 6rem;
+    width: 1rem;
+}
+
+#center_line {
+    background-color: white;
+    position: absolute;
+    width: 0.6rem;
+    left:50%;
+    height: 100vh;
+}
+
+#ball {
+    background-color: white;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    width: 1rem;
+    height:1rem;
+    border-radius: 50%;
+}
+
+.score {
+    font-family: 'Times New Roman', Times, serif;
+    font-size:4rem;
+    color: whitesmoke;
+    position: absolute;
+    top: 1rem;
+
+    /* stop text being selected*/
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#player_score {
+    left: 35%;
+}
+
+#computer_score {
+    right:35%;
+}
+
+
+#title {
+    font-size: 5rem;
+    position: absolute;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    text-align: center;
+
+}
+.difficulty_button {
+    font-size:3rem;
+    color: black;
+    background-color: white;
+    padding: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.difficulty_button:hover {
+    font-size: 3.5rem;
+    padding: 1.3rem;
+}
+
+#easy {
+    top: 30%;
+
+}
+
+#medium {
+    top:60%;
+}
+
+#hard {
+    top: 90%;
+}
