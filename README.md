@@ -1,6 +1,6 @@
 # Pong!
 
-![Image of Pong ball](favicon.ico = 250x)
+<img src='favicon.ico' width=1000%>
 
 A simple pong game built using Javascript and Jquery
 
