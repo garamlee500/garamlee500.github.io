@@ -7,15 +7,14 @@ body {
     /* Prevent scroll bars from appearing*/
     overflow: hidden;
 
-    
     /* stop text being selected*/
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+
 }
 
 #game_window {
@@ -35,7 +34,6 @@ body {
     overflow: hidden;
 }
 
-
 #left_paddle {
     background-color: white;
     position: absolute;
@@ -44,8 +42,6 @@ body {
     height: 6rem;
     width: 1rem;
 }
-
-
 
 #right_paddle {
     background-color: white;
@@ -91,7 +87,6 @@ body {
     right:35%;
 }
 
-
 #title {
     font-size: 5rem;
     position: absolute;
@@ -101,6 +96,7 @@ body {
     text-align: center;
 
 }
+
 .difficulty_button {
     font-size:3rem;
     color: black;
@@ -136,12 +132,8 @@ body {
     flex-flow: column wrap
 }
 
-
 #instruction {
     color: white;
     font-size: 2rem;
     margin-top:40%;
 }
-
-
-

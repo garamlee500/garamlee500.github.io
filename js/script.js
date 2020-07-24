@@ -8,42 +8,6 @@ function convertRemToPixels(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
-
-/*
-
-function move(amount) {
-    // animate the left paddle
-    // if left paddle top is less than 1rem and you wnat to go up
-    if ($('#left_paddle').css('top').slice(0,-2) < convertRemToPixels(1) && Math.abs(amount) == amount) {
-        // if paddle isn't already on top
-        if  ($('#left_paddle').css('top').slice(0,-2)!=0){
-
-            // move paddle to top
-            $('#left_paddle').stop(true).animate({
-                top: '=0'
-            }, 10) 
-        }
-    }
-    // else if paddle bottom is less then 1 rem and you want to go down
-    else if ($('#left_paddle').css('bottom').slice(0,-2) < convertRemToPixels(1) && Math.abs(amount) != amount){
-            // if paddle isn't already on bottom
-            if  ($('#left_paddle').css('top').slice(0,-2)!=0){
-                $('#left_paddle').stop(true).animate({
-                    bottom: '=0'
-                }, 10) 
-            }
-    } // 
-
-
-    else {
-        $('#left_paddle').stop(true).animate({
-            // change top amount by amount variable
-            top: '-='+amount +'rem'
-        }, 10)
-    }
-}
-*/
- 
 // apparently this detects if two elements overlap
 function isOverlap (element1, element2) {
     var Element1 = {};
@@ -65,16 +29,11 @@ function isOverlap (element1, element2) {
 
 function move_ball(amount,deg, function_after_movement, function_parameter) {
     // formula to find change in x and y using angle and distance
-
-
-    
     // if ball has touched left wall
     if ( $('#ball').css('left').slice(0,-2) <= convertRemToPixels(1)) {
-        
 
         // get ball to middle of screen
 
-        
         $('#ball').offset({top: $('#game_window').css('height').slice(0,-2)/2, left:$('#game_window').css('width').slice(0,-2)/2}, function_after_movement(function_parameter));
         
         // update score
@@ -82,28 +41,17 @@ function move_ball(amount,deg, function_after_movement, function_parameter) {
 
         current_ball_angle =   0
 
-
-
     }
 
     // if ball has touched right wall
     else if ( $('#ball').css('right').slice(0,-2) <= convertRemToPixels(1)) {
 
-
-
         $('#ball').offset({top: $('#game_window').css('height').slice(0,-2)/2, left:$('#game_window').css('width').slice(0,-2)/2}, function_after_movement(function_parameter));
         
-
-
         // update score
         $('#player_score').text(Number($('#player_score').text())+1)
         
-
         current_ball_angle =   180
-
-
-
-        
 
     }
     else {
@@ -122,17 +70,6 @@ function move_ball(amount,deg, function_after_movement, function_parameter) {
         $('#ball').offset({top: new_y, left:new_x},    function_after_movement(function_parameter))
     }
 
-                
-    
-
-
-    /* removing because animate is too laggy
-
-    $('#ball').stop(true).animate({
-        left: "+="+x+'rem',
-        top: "+="+y+'rem',
-    }, amount*1, function_after_movement())
-*/
 }
 
 
@@ -161,8 +98,6 @@ function execute_game(difficulty) {
     if (current_ball_angle>360){
         current_ball_angle -= 360
     }
-
-
 
     // checks wether ball is going right or not
     if (270<current_ball_angle|| 90>current_ball_angle) {
@@ -224,7 +159,6 @@ function execute_game(difficulty) {
     }
 
 
-
     // if ball is outside frame
     //  if ball's distance from top below 0 or bottom below 0
     // if ball has touched top wall
@@ -242,7 +176,6 @@ function execute_game(difficulty) {
 
         }
     }
-
 
 
     // else if ball has touched bottom wall
@@ -301,15 +234,10 @@ function execute_game(difficulty) {
 }
 
 
-
-
 function game(difficulty){ 
     this.difficulty = difficulty,
 
     this.start_game = function(){
-
-
- 
 
         console.log('game starting')
         // create paddles 
@@ -328,28 +256,6 @@ function game(difficulty){
         $('#center_line').stop(true).animate({left : '-=0.3rem'},0) // auto adjust center line to center
         
 
-        /*
-        // check for key press
-        $('body').keydown(function(event){
-
-            // detect key pressed
-            let keycode = (event.keyCode ? event.keyCode : event.which);
-
-            // if up arrow pressed (unicode 38)
-            if(keycode == '38'){
-                // move up 10
-                move(1)
-            }
-
-            // if down arrow pressed (uncicode 40)
-            if(keycode == '40'){
-                // move down 10
-                move(-1)
-            }
-
-        })
-
-        */
         game_active = true;
         execute_game(difficulty)
     }
@@ -360,8 +266,6 @@ function game(difficulty){
 
     
 }
-
-
 
 
 $(document).ready(function(){
@@ -377,8 +281,6 @@ $(document).ready(function(){
                             '<div class="difficulty_button" id="easy">Easy!</div>' +
                             '<div class="difficulty_button" id="medium">Medium!</div>' +
                             '<div class="difficulty_button" id="hard">H̷͓͎̽à̵̛̦̝̙̿̒r̴̢̆͛ͅd̷̡̫̜̪̈̈́̐̾</div></div>')
-
-
 
     // detect press
     $('#game_window').on('click', '#easy', function(){
@@ -413,50 +315,45 @@ $(document).ready(function(){
 })
 
 
+var change = { // this code makes paddle move smoothly 
+    
 
 
-
-                        var change = { // this code makes paddle move smoothly 
-                            
-
-                        
-                            38: {
-                            top: "-=5"
-                            },
-                            
+    38: {
+    top: "-=5"
+    },
+    
 
 
-                            83: {
-                                top:"-5"
-                            },
+    83: {
+        top:"-5"
+    },
 
-                            87: {
-                                top: "+5"
-                            },
+    87: {
+        top: "+5"
+    },
 
-                            
-                            40: {
-                            top: "+=5"
-                            },
-                        }
-                        $(document).one("keydown", keyDown)
-                        
-                        var going;
-                        
-                        function keyDown(e) {
-                            $(document).one("keyup", keyup)
-                            var animation = change[e.which];
-                            going = setInterval(keepGoing, 1);
-                        
-                            function keepGoing() {
-                            $("#left_paddle").css(animation)
-                            }
-                        
-                        }
-                        
-                        function keyup(e) {
-                            clearInterval(going)
-                            $(document).one("keydown", keyDown)
-                        }
-                        
-                
+    
+    40: {
+    top: "+=5"
+    },
+}
+$(document).one("keydown", keyDown)
+
+var going;
+
+function keyDown(e) {
+    $(document).one("keyup", keyup)
+    var animation = change[e.which];
+    going = setInterval(keepGoing, 1);
+
+    function keepGoing() {
+    $("#left_paddle").css(animation)
+    }
+
+}
+
+function keyup(e) {
+    clearInterval(going)
+    $(document).one("keydown", keyDown)
+}
