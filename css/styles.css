@@ -25,6 +25,9 @@ body {
     width: 100%;
     padding:0;
 
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
     /* put canvas at the bottom*/
     z-index: -1;
 
@@ -103,25 +106,42 @@ body {
     color: black;
     background-color: white;
     padding: 1rem;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.difficulty_button:hover {
-    font-size: 3.5rem;
-    padding: 1.3rem;
-}
-
-#easy {
-    top: 30%;
+    margin-top: 2rem;
 
 }
 
-#medium {
-    top:60%;
+#easy:hover {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    margin-top: 1.7rem;
+    margin-bottom: -0.3rem;
+}
+#medium:hover {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    margin-top: 1.7rem;
+    margin-bottom: -0.3rem;
+}
+#hard:hover {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    margin-top: 1.7rem;
+    margin-bottom: -0.3rem;
 }
 
-#hard {
-    top: 90%;
+#difficulties {
+    margin: auto;
+    margin-left: 23%;
+    display: flex;
+    flex-flow: column wrap
 }
+
+
+#instruction {
+    color: white;
+    font-size: 2rem;
+    margin-top:40%;
+}
+
+
+
