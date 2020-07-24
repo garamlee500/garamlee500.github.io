@@ -368,9 +368,17 @@ $(document).ready(function(){
 
     // create enterance thing
     $('#game_window').append('<div id="title">Pong</div>')
-    $('#game_window').append('<div class="difficulty_button" id="easy">Easy!</div>')
-    $('#game_window').append('<div class="difficulty_button" id="medium">Medium!</div>')
-    $('#game_window').append('<div class="difficulty_button" id="hard">H̷͓͎̽à̵̛̦̝̙̿̒r̴̢̆͛ͅd̷̡̫̜̪̈̈́̐̾</div>')
+
+    // add instructions
+
+    $('#game_window').append('<div id="instruction">&nbsp;Move the left <br>&nbsp;paddle using ↑ and ↓!')
+
+    $('#game_window').append("<div id='difficulties'>" +
+                            '<div class="difficulty_button" id="easy">Easy!</div>' +
+                            '<div class="difficulty_button" id="medium">Medium!</div>' +
+                            '<div class="difficulty_button" id="hard">H̷͓͎̽à̵̛̦̝̙̿̒r̴̢̆͛ͅd̷̡̫̜̪̈̈́̐̾</div></div>')
+
+
 
     // detect press
     $('#game_window').on('click', '#easy', function(){
