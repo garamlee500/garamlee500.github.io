@@ -27,9 +27,28 @@ function isOverlap (element1, element2) {
 
 }
 
+// function to end game
+function end_game (message) {
+    
+    // empty game window
+
+    $('#game_window').empty()
+
+
+    $('#game_window').html('<div id = "game_end_message">' + message + '</div>')
+    // add message
+
+
+    // start home after 2 seconds
+    setTimeout(function(){
+        start_home()
+    }, 2000)
+}
+
 function move_ball(amount,deg, function_after_movement, function_parameter) {
     // formula to find change in x and y using angle and distance
     // if ball has touched left wall
+
     if ( $('#ball').css('left').slice(0,-2) <= convertRemToPixels(1)) {
 
         // get ball to middle of screen
@@ -39,10 +58,18 @@ function move_ball(amount,deg, function_after_movement, function_parameter) {
         // update score
         $('#computer_score').text(Number($('#computer_score').text())+1)
 
+        // if computer score is 10 or more
+        if(Number($('#computer_score').text())>=10){
+            // end game
+
+            game_active = false;
+
+            end_game('The Computer won. You lost!')
+        }
+
         current_ball_angle =   0
-
     }
-
+        
     // if ball has touched right wall
     else if ( $('#ball').css('right').slice(0,-2) <= convertRemToPixels(1)) {
 
@@ -51,9 +78,21 @@ function move_ball(amount,deg, function_after_movement, function_parameter) {
         // update score
         $('#player_score').text(Number($('#player_score').text())+1)
         
-        current_ball_angle =   180
 
+        
+        // if player score is 10 or more
+        if(Number($('#player_score').text())>=10){
+            // end game
+
+            game_active = false;
+
+            end_game('You won. Conratulations!!')
+
+        }
+
+        current_ball_angle =   180
     }
+
     else {
         
         x = Math.cos(deg*Math.PI/180) * amount;
@@ -68,13 +107,20 @@ function move_ball(amount,deg, function_after_movement, function_parameter) {
 
                                                     // function_after_movement executes another check of all pong movements
         $('#ball').offset({top: new_y, left:new_x},    function_after_movement(function_parameter))
-    }
+            
 
+    }
 }
+
+
 
 
 function execute_game(difficulty) {
 
+    // stop game if game not active
+    if (game_active!=true){
+        return
+    }
     // keeep left paddle on screen
     if ($('#left_paddle').css('top').slice(0,-2)<0) {
         $('#left_paddle').css('top',0)
@@ -239,6 +285,7 @@ function game(difficulty){
 
     this.start_game = function(){
 
+        $('#game_window').empty()
         console.log('game starting')
         // create paddles 
         $('#game_window').append('<div id="right_paddle"></div>')
@@ -261,15 +308,14 @@ function game(difficulty){
     }
 
 
-    this.end_game = function() {
-        }
 
     
 }
 
-
-$(document).ready(function(){
-
+function start_home (){
+    
+    // empty game window
+    $('#game_window').empty()
     // create enterance thing
     $('#game_window').append('<div id="title">Pong</div>')
 
@@ -280,8 +326,15 @@ $(document).ready(function(){
     $('#game_window').append("<div id='difficulties'>" +
                             '<div class="difficulty_button" id="easy">Easy!</div>' +
                             '<div class="difficulty_button" id="medium">Medium!</div>' +
-                            '<div class="difficulty_button" id="hard">H̷͓͎̽à̵̛̦̝̙̿̒r̴̢̆͛ͅd̷̡̫̜̪̈̈́̐̾</div></div>')
+                            '<div class="difficulty_button" id="hard">Hard</div></div>')    
 
+    
+
+
+}
+$(document).ready(function(){
+    // add event handlers : ( Adding multiple handlers for the same event triggered game twice which was very bad)
+    
     // detect press
     $('#game_window').on('click', '#easy', function(){
         // empty game_window
@@ -302,29 +355,22 @@ $(document).ready(function(){
     })
 
     $('#game_window').on('click', '#hard', function(){
+        // empty game_window
+        $('#game_window').empty()
 
-    // empty game_window
-    $('#game_window').empty()
-
-    // start game on medium
-    current_game = new game(7)
-    current_game.start_game()
+        // start game on medium
+        current_game = new game(7)
+        current_game.start_game()
     })
-
-
+    
+    start_home()
 })
 
 
 var change = { // this code makes paddle move smoothly 
-    
-
-
     38: {
     top: "-=5"
     },
-    
-
-
     83: {
         top:"-5"
     },
@@ -332,8 +378,6 @@ var change = { // this code makes paddle move smoothly
     87: {
         top: "+5"
     },
-
-    
     40: {
     top: "+=5"
     },

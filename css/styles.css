@@ -127,7 +127,7 @@ body {
 
 #difficulties {
     margin: auto;
-    margin-left: 23%;
+    margin-left: 22%;
     display: flex;
     flex-flow: column wrap
 }
@@ -136,4 +136,11 @@ body {
     color: white;
     font-size: 2rem;
     margin-top:40%;
+}
+
+#game_end_message {
+    color: white;
+    font-size: 3rem;
+    margin: auto;
+
 }
