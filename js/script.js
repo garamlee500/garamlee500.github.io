@@ -256,13 +256,31 @@ function execute_game(difficulty) {
         // if ball above paddle
         if (ball_top< $('#right_paddle').css('top').slice(0,-2)){
             // move paddle down
-            $('#right_paddle').offset({top: $('#right_paddle').css('top').slice(0,-2)-difficulty*1.2})
+            $('#right_paddle').offset({top: $('#right_paddle').css('top').slice(0,-2)-difficulty})
+
+            // if paddle is very near too ball
+            if (ball_top > $('#right_paddle').css('top').slice(0,-2)-difficulty){
+                // set paddle to ball
+                $('#right_paddle').offset({top: ball_top})
+            }
+            else{
+                // move paddle down
+                $('#right_paddle').offset({top: $('#right_paddle').css('top').slice(0,-2)-difficulty})
+            }
         }
 
         else {
-        // move paddle up
-        // big brain javascript requires type conversion for addition but not for subtraction
-        $('#right_paddle').offset({top: Number($('#right_paddle').css('top').slice(0,-2))+difficulty*1.2})
+            // big brain javascript requires type conversion for addition but not for subtraction
+            if (ball_top < Number($('#right_paddle').css('top').slice(0,-2))+difficulty){
+                // set paddle onto ball
+                $('#right_paddle').offset({top: ball_top})
+            }
+            else {
+                // move paddle up
+                // big brain javascript requires type conversion for addition but not for subtraction
+                $('#right_paddle').offset({top: Number($('#right_paddle').css('top').slice(0,-2))+difficulty})                
+            }
+
         }
     }
 
