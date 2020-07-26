@@ -3,6 +3,10 @@ var x;
 var y;
 
 var current_ball_angle = 1;
+var isTouchScreen = false
+
+var upButtonPressed = false;
+var downButtonPressed = false;
 
 function convertRemToPixels(rem) {    
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -121,6 +125,16 @@ function execute_game(difficulty) {
     if (game_active!=true){
         return
     }
+
+    // if upButtonpressed (this is defined by event listeners)
+    if (upButtonPressed){
+        // move paddle up by value
+        movePaddle(10)
+    }
+    else if (downButtonPressed){
+        movePaddle(-10)
+    }
+
     // keeep left paddle on screen
     if ($('#left_paddle').css('top').slice(0,-2)<0) {
         $('#left_paddle').css('top',0)
@@ -291,7 +305,7 @@ function execute_game(difficulty) {
                     // the number controls some value - probably distance. making it big seems to make ball go quick
             move_ball((difficulty*0.1), current_ball_angle, execute_game, difficulty)
              // delay - controls frame rate - 
-        }, 3)}
+        }, 1)}
     
 
     
@@ -320,13 +334,21 @@ function game(difficulty){
         $('#game_window').append('<div id="center_line"></div>')
         $('#center_line').stop(true).animate({left : '-=0.3rem'},0) // auto adjust center line to center
         
+        
+        // create onscreen buttons if game is played on touchscreen
+        if (isTouchScreen){
 
+            $('#game_window').append('<div id="gameButtonContainer">'+
+                                            '<div class="gameButton" id="upButton">↑</div>' +
+                                            '<div class="gameButton" id="downButton">↓</div>'+
+                                            '</div>')
+        }
         game_active = true;
         execute_game(difficulty)
     }
-
-
-
+    
+    
+    
     
 }
 
@@ -381,8 +403,36 @@ $(document).ready(function(){
         current_game.start_game()
     })
     
+
+    // detect press of mobile buttons
+    $('#game_window').on('touchend', '#upButton', function(){
+        // stop button press thing
+        upButtonPressed = false;
+    })
+
+    $('#game_window').on('touchstart', '#upButton', function(){
+        upButtonPressed = true;
+
+    })
+
+    $('#game_window').on('touchend', '#downButton', function(){
+        // stop button press thing
+        downButtonPressed = false;
+    })
+    
+    $('#game_window').on('touchstart', '#downButton', function(){
+        downButtonPressed = true;
+
+    })
     start_home()
 })
+
+
+function movePaddle(y,func) {
+
+    $('#left_paddle').offset({top: Number($('#left_paddle').css('top').slice(0,-2))-y})
+
+}
 
 
 var change = { // this code makes paddle move smoothly 
@@ -418,4 +468,9 @@ function keyDown(e) {
 function keyup(e) {
     clearInterval(going)
     $(document).one("keydown", keyDown)
+}
+
+// check if touchscreen present
+if ('ontouchstart' in document.documentElement) {
+    isTouchScreen = true;
 }
