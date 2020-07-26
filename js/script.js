@@ -129,10 +129,10 @@ function execute_game(difficulty) {
     // if upButtonpressed (this is defined by event listeners)
     if (upButtonPressed){
         // move paddle up by value
-        movePaddle(10)
+        movePaddle(5)
     }
     else if (downButtonPressed){
-        movePaddle(-10)
+        movePaddle(-5)
     }
 
     // keeep left paddle on screen
