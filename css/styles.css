@@ -104,6 +104,8 @@ body {
     padding: 1rem;
     margin-top: 2rem;
 
+    /* Prevents hitbox being covered by title*/
+    z-index: 0;
 }
 
 #easy:hover {
