@@ -27,8 +27,8 @@ body {
     display:flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    /* put canvas at the bottom*/
-    z-index: -1;
+
+    position: relative;
 
     /* Prevent scroll bars from appearing*/
     overflow: hidden;
@@ -105,7 +105,7 @@ body {
     margin-top: 2rem;
 
     /* Prevents hitbox being covered by title*/
-    z-index: 0;
+    z-index: 1;
 }
 
 #easy:hover {
