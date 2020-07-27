@@ -7,6 +7,42 @@ var isTouchScreen = false
 
 var upButtonPressed = false;
 var downButtonPressed = false;
+var isFullScreen = false;
+
+
+/* Get the documentElement (<html>) to display the page in fullscreen */
+var elem = document.documentElement;
+
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+
+  isFullScreen = true;
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) { /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE/Edge */
+    document.msExitFullscreen();
+  }
+
+  isFullScreen = false;
+}
+
 
 function convertRemToPixels(rem) {    
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -368,6 +404,8 @@ function start_home (){
                             '<div class="difficulty_button" id="medium">Medium!</div>' +
                             '<div class="difficulty_button" id="hard">Hard</div></div>')    
 
+    // add full screen button
+    $('#game_window').append('<span class = "full-screen"></span>')
     
 
 
@@ -423,6 +461,22 @@ $(document).ready(function(){
     $('#game_window').on('touchstart', '#downButton', function(){
         downButtonPressed = true;
 
+    })
+
+
+
+    // when full screen button pressed
+
+    $('#game_window').on('click', '.full-screen',function(){
+        if (isFullScreen){
+            // if full screen exit full screen
+            closeFullscreen()
+        }
+
+        else {
+            // open full screen
+            openFullscreen()
+        }
     })
     start_home()
 })
