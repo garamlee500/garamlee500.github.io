@@ -160,7 +160,6 @@ body {
 }
 
 #gameButtonContainer {
-    position: absolute;
     width: 40%;
     height: 100%;
     flex-flow: column nowrap;
