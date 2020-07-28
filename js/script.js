@@ -7,8 +7,6 @@ var isTouchScreen = false
 
 var upButtonPressed = false;
 var downButtonPressed = false;
-var isFullScreen = false;
-
 
 /* Get the documentElement (<html>) to display the page in fullscreen */
 var elem = document.documentElement;
@@ -24,8 +22,6 @@ function openFullscreen() {
   } else if (elem.msRequestFullscreen) { /* IE/Edge */
     elem.msRequestFullscreen();
   }
-
-  isFullScreen = true;
 }
 
 /* Close fullscreen */
@@ -39,8 +35,6 @@ function closeFullscreen() {
   } else if (document.msExitFullscreen) { /* IE/Edge */
     document.msExitFullscreen();
   }
-
-  isFullScreen = false;
 }
 
 
@@ -468,7 +462,9 @@ $(document).ready(function(){
     // when full screen button pressed
 
     $('#game_window').on('click', '.full-screen',function(){
-        if (isFullScreen){
+
+        // checks for fullscren
+        if ((screen.availHeight || screen.height-30) <= window.innerHeight){
             // if full screen exit full screen
             closeFullscreen()
         }
