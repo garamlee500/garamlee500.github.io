@@ -1,0 +1,203 @@
+body {
+    margin:0;
+    padding:0;
+    height: 100vh;
+    z-index: -1;
+    
+    /* Prevent scroll bars from appearing*/
+    overflow: hidden;
+
+    /* stop text being selected*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+
+}
+
+#game_window {
+    margin:0;
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    padding:0;
+
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    position: relative;
+
+    /* Prevent scroll bars from appearing*/
+    overflow: hidden;
+}
+
+#left_paddle {
+    background-color: white;
+    position: absolute;
+    left: 5rem;
+    top: 50%;
+    height: 6rem;
+    width: 1rem;
+}
+
+#right_paddle {
+    background-color: white;
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    height: 6rem;
+    width: 1rem;
+}
+
+#center_line {
+    background-color: white;
+    position: absolute;
+    width: 0.6rem;
+    left:50%;
+    height: 100vh;
+}
+
+#ball {
+    background-color: white;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    width: 1rem;
+    height:1rem;
+    border-radius: 50%;
+}
+
+.score {
+    font-family: 'Times New Roman', Times, serif;
+    font-size:4rem;
+    color: whitesmoke;
+    position: absolute;
+    top: 1rem;
+
+}
+
+#player_score {
+    left: 35%;
+}
+
+#computer_score {
+    right:35%;
+}
+
+#title {
+    font-size: 5rem;
+    position: absolute;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    text-align: center;
+
+}
+
+.difficulty_button {
+    font-size:3rem;
+    color: black;
+    background-color: white;
+    padding: 1rem;
+    margin-top: 2rem;
+
+    /* Prevents hitbox being covered by title*/
+    z-index: 1;
+}
+
+#easy:hover {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    margin-top: 1.7rem;
+    margin-bottom: -0.3rem;
+}
+#medium:hover {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    margin-top: 1.7rem;
+    margin-bottom: -0.3rem;
+}
+#hard:hover {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    margin-top: 1.7rem;
+    margin-bottom: -0.3rem;
+}
+
+#difficulties {
+    margin: auto;
+    margin-left: 22%;
+    display: flex;
+    flex-flow: column wrap
+}
+
+#instruction {
+    color: white;
+    font-size: 2rem;
+    margin-top:40%;
+}
+
+#game_end_message {
+    color: white;
+    font-size: 3rem;
+    margin: auto;
+
+}
+
+.gameButton {
+    border-radius: 5%;
+    background-color: rgba(200,200, 200, 0.2);
+    border: solid rgba(255,255,255, 0.2) 0.1px;
+    text-align: center;
+    height: 50%;
+    margin:0;
+    z-index: 1;
+    color: rgba(255,255,255, 0.2);
+    font-size: 3rem;
+}
+
+#gameButtonContainer {
+    width: 40%;
+    height: 100%;
+    flex-flow: column nowrap;
+    align-items: stretch;
+}
+
+
+.full-screen {
+    vertical-align: middle;
+    box-sizing: border-box;
+    display: inline-block;
+    border: .1em solid white;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    left:0;
+    top:0;
+    background-color: black;
+    font-size: 5rem;
+  }
+  .full-screen:before, .full-screen:after {
+    content: '';
+    background: #000000;
+    position: absolute;
+  }
+  .full-screen:before {
+    width: .333em;
+    height: 1em;
+    left: .233em;
+    top: -.1em;
+  }
+  .full-screen:after {
+    width: 1em;
+    height: .333em;
+    top: .233em;
+    left: -.1em;
+  }
+  
+  .full-screen:hover{
+      font-size: 6rem;
+  }
